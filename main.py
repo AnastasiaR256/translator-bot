@@ -237,7 +237,8 @@ async def test_command(update, context):
         if choice[i]["question"] == question["question"]:
             choice.pop(i)
             break
-    options = [choice[randrange(len(choice))]["answer"] for _ in range(3)]
+    options = [choice.pop(randrange(len(choice)))["answer"] for _ in range(3)]
+    print(options)
     options.append(question["answer"])
     reply_keyboard = [[options.pop(randrange(len(options))) for _ in range(2)] for _ in range(2)]
     markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
@@ -272,7 +273,8 @@ async def answer_handler(update, context):
             if choice[i]["question"] == question["question"]:
                 choice.pop(i)
                 break
-        options = [choice[randrange(len(choice))]["answer"] for _ in range(3)]
+        options = [choice.pop(randrange(len(choice)))["answer"] for _ in range(3)]
+        print(options)
         options.append(question["answer"])
         reply_keyboard = [[options.pop(randrange(len(options))) for _ in range(2)] for _ in range(2)]
         markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
